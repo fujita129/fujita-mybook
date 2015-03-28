@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'mybook.wsgi.application'
 # }
 
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+DATABASES = {'default': dj_database_url.config(default='')}
 if bool(os.environ.get('LOCAL_DEV', False)):
     DATABASES = {
         'default': {
