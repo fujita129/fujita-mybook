@@ -67,7 +67,6 @@ WSGI_APPLICATION = 'mybook.wsgi.application'
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 if bool(os.environ.get('LOCAL_DEV', False)):
-    # ローカル開発ならDATABASES['default']を上書き
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
