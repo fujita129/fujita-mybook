@@ -65,10 +65,19 @@ WSGI_APPLICATION = 'mybook.wsgi.application'
 # }
 
 import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-}
-
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+if bool(os.environ.get('LOCAL_DEV', False)):
+    # ローカル開発ならDATABASES['default']を上書き
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
