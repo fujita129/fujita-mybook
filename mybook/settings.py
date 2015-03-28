@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'mybook.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 # Internationalization
@@ -88,14 +88,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-#STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, STATIC_ROOT),
 )
-
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFileStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFileStorage'
 
 # if 'local' in hostname:
 #     DEBUG = True
